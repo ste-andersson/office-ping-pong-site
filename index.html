@@ -70,12 +70,33 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--bg-page);color:var(
 .included-card p{font-size:0.86rem;color:#666;line-height:1.5;}
 
 /* HOW */
-.how-section{background:var(--bg-app);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);}
+.how-section{background:var(--bg-app);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);overflow:visible;}
 .how-screenshots{display:flex;justify-content:center;gap:32px;padding:32px 24px 0;max-width:820px;margin:0 auto;flex-wrap:wrap;}
 .how-screen-item{display:flex;flex-direction:column;align-items:center;gap:12px;flex:1;min-width:160px;max-width:220px;}
 .how-screen-item img{width:100%;max-width:200px;display:block;border-radius:4px;}
 .how-screen-item h3{font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;color:var(--green-dark);text-align:center;margin:0;}
 .how-screen-item p{font-size:0.86rem;color:#666;line-height:1.5;text-align:center;margin:0;}
+
+/* Karusell - mobil */
+.how-carousel{display:none;}
+@media(max-width:600px){
+  .how-screenshots{display:none;}
+  .how-carousel{display:block;padding:24px 0 0;}
+  .how-carousel-outer{overflow:visible;}
+  .how-carousel-track{position:relative;height:340px;margin:0 auto;max-width:360px;padding-top:14px;overflow:visible;}
+  .how-carousel-slide{position:absolute;top:0;display:flex;flex-direction:column;align-items:center;gap:8px;transition:transform 0.4s ease,opacity 0.4s ease;will-change:transform,opacity;}
+  .how-carousel-slide img{width:140px;display:block;border-radius:4px;}
+  .how-slide-img-wrap{position:relative;display:inline-block;}
+  .how-slide-badge{position:absolute;top:-10px;left:-10px;width:26px;height:26px;border-radius:50%;background:var(--orange-mid);color:white;font-size:0.75rem;font-weight:900;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,0.2);}
+  .how-carousel-slide.pos-left{transform:translateX(-10px) scale(0.72);opacity:0.4;z-index:1;}
+  .how-carousel-slide.pos-center{transform:translateX(110px) scale(1);opacity:1;z-index:2;}
+  .how-carousel-slide.pos-right{transform:translateX(230px) scale(0.72);opacity:0.4;z-index:1;}
+  .how-carousel-slide.pos-exit{transform:translateX(-130px) scale(0.55);opacity:0;z-index:0;}
+  .how-carousel-slide.pos-enter{transform:translateX(370px) scale(0.55);opacity:0;z-index:0;}
+  .how-carousel-caption{text-align:center;padding:8px 24px 0;min-height:60px;transition:opacity 0.3s ease;}
+  .how-carousel-caption h3{font-size:0.85rem;font-weight:800;text-transform:uppercase;letter-spacing:0.5px;color:var(--green-dark);margin-bottom:4px;}
+  .how-carousel-caption p{font-size:0.83rem;color:#666;line-height:1.5;}
+}
 
 /* TECH */
 .tech-pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:20px;}
@@ -138,7 +159,6 @@ footer a{color:var(--orange-mid);text-decoration:none;}
 
 @media(max-width:500px){
   .how-screenshots{gap:20px;}
-  .how-screen-item{min-width:120px;}
 }
 </style>
 </head>
@@ -240,7 +260,7 @@ footer a{color:var(--orange-mid);text-decoration:none;}
       <p>Tryck på era avatarer för att starta en match.</p>
     </div>
     <div class="how-screen-item">
-      <img src="set-scores.png" alt="Mata in resultat">
+      <img src="set-scores.png" alt="Klicka in resultat">
       <h3>Klicka in resultat</h3>
       <p>Registrera poängen direkt på skärmen. Enkelt och snabbt.</p>
     </div>
@@ -248,6 +268,27 @@ footer a{color:var(--orange-mid);text-decoration:none;}
       <img src="leaderboard.png" alt="Se tabellen">
       <h3>Se tabellen</h3>
       <p>Tabellen uppdateras live. Alla kan följa ligan.</p>
+    </div>
+  </div>
+  <div class="how-carousel" id="how-carousel">
+    <div class="how-carousel-outer">
+    <div class="how-carousel-track" id="how-track">
+      <div class="how-carousel-slide pos-left" data-index="0">
+        <div class="how-slide-img-wrap"><img src="pick-player.png" alt=""><div class="how-slide-badge">1</div></div>
+      </div>
+      <div class="how-carousel-slide pos-center" data-index="1">
+        <div class="how-slide-img-wrap"><img src="set-scores.png" alt=""><div class="how-slide-badge">2</div></div>
+      </div>
+      <div class="how-carousel-slide pos-right" data-index="2">
+        <div class="how-slide-img-wrap"><img src="leaderboard.png" alt=""><div class="how-slide-badge">3</div></div>
+      </div>
+      <div class="how-carousel-slide pos-enter" data-index="3">
+        <div class="how-slide-img-wrap"><img src="pick-player.png" alt=""><div class="how-slide-badge">1</div></div>
+      </div>
+    </div>
+    </div>
+    <div class="how-carousel-caption" id="how-caption">
+      <h3>Välj spelare</h3><p>Tryck på era avatarer för att starta en match.</p>
     </div>
   </div>
   <div style="height:50px;"></div>
@@ -333,6 +374,77 @@ async function submitForm(){
     btn.disabled=false;btn.textContent='Skicka';
   }
 }
+
+// Karusell - 4 slides, pos-enter från höger
+var carouselData=[
+  {h3:'Välj spelare',p:'Tryck på era avatarer för att starta en match.',img:'pick-player.png'},
+  {h3:'Klicka in resultat',p:'Registrera poängen direkt på skärmen. Enkelt och snabbt.',img:'set-scores.png'},
+  {h3:'Se tabellen',p:'Tabellen uppdateras live. Alla kan följa ligan.',img:'leaderboard.png'}
+];
+var carCur=0;
+var carAnimating=false;
+
+function carSetEl(el,data,badgeNum,posClass,animate){
+  el.style.transition=animate?'transform 0.4s ease,opacity 0.4s ease':'none';
+  el.className='how-carousel-slide '+posClass;
+  el.querySelector('img').src=data.img;
+  el.querySelector('.how-slide-badge').textContent=badgeNum;
+}
+
+function carRender(animate){
+  var n=carouselData.length;
+  var els=document.querySelectorAll('.how-carousel-slide');
+  if(els.length<4)return;
+  var prev=(carCur-1+n)%n;
+  var next=(carCur+1)%n;
+  var next2=(carCur+2)%n;
+  var cap=document.getElementById('how-caption');
+  carSetEl(els[0],carouselData[prev],prev+1,'pos-left',animate);
+  carSetEl(els[1],carouselData[carCur],carCur+1,'pos-center',animate);
+  carSetEl(els[2],carouselData[next],next+1,'pos-right',animate);
+  carSetEl(els[3],carouselData[next2],next2+1,'pos-enter',animate);
+  if(cap){
+    cap.querySelector('h3').textContent=carouselData[carCur].h3;
+    cap.querySelector('p').textContent=carouselData[carCur].p;
+  }
+}
+
+function carAdvance(){
+  if(carAnimating)return;
+  carAnimating=true;
+  var n=carouselData.length;
+  var els=document.querySelectorAll('.how-carousel-slide');
+  var cap=document.getElementById('how-caption');
+  if(els.length<4){carAnimating=false;return;}
+
+  // Alla fyra animeras simultant:
+  // exit <- left <- center <- right <- enter
+  els[0].style.transition='transform 0.4s ease,opacity 0.4s ease';
+  els[1].style.transition='transform 0.4s ease,opacity 0.4s ease';
+  els[2].style.transition='transform 0.4s ease,opacity 0.4s ease';
+  els[3].style.transition='transform 0.4s ease,opacity 0.4s ease';
+  els[0].className='how-carousel-slide pos-exit';
+  els[1].className='how-carousel-slide pos-left';
+  els[2].className='how-carousel-slide pos-center';
+  els[3].className='how-carousel-slide pos-right';
+  if(cap)cap.style.opacity='0';
+
+  setTimeout(function(){
+    carCur=(carCur+1)%n;
+    carRender(false);
+    if(cap){
+      cap.style.transition='opacity 0.25s ease';
+      cap.style.opacity='1';
+    }
+    carAnimating=false;
+  },430);
+}
+
+carRender(false);
+setInterval(carAdvance,3000);
+
+carRender(false);
+setInterval(carAdvance,3000);
 
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 var vid=document.getElementById('app-video');
