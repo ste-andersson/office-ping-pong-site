@@ -39,6 +39,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--bg-page);color:var(
 .phone-wrap{position:relative;z-index:2;flex-shrink:0;}
 .phone-frame{position:relative;width:160px;height:346px;background:#111;border-radius:28px;padding:7px;box-shadow:0 16px 48px rgba(0,0,0,0.35),inset 0 0 0 1px #333;}
 .phone-screen{width:100%;height:100%;border-radius:22px;overflow:hidden;background:#000;position:relative;}
+
 .phone-screen video{width:100%;height:100%;object-fit:cover;display:block;}
 .phone-placeholder{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;background:var(--bg-app);gap:8px;padding:16px;text-align:center;}
 .phone-placeholder-icon{font-size:2rem;}
@@ -84,8 +85,8 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--bg-page);color:var(
 .pill.orange{background:var(--orange-light);border-color:var(--orange-dark);color:var(--orange-dark);}
 
 /* PRICE */
-.price-section{background:var(--bg-app);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);padding:56px 24px;}
-.price-inner{max-width:820px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;}
+.price-section{background:var(--bg-app);border-top:1px solid var(--border-soft);border-bottom:1px solid var(--border-soft);padding:56px 0;}
+.price-inner{max-width:820px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;padding:0 24px;}
 .price-left{display:flex;flex-direction:column;justify-content:center;}
 .price-label{font-size:0.7rem;font-weight:800;letter-spacing:2.5px;text-transform:uppercase;color:var(--orange-mid);margin-bottom:10px;}
 .price-left h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:900;color:var(--green-dark);text-transform:uppercase;line-height:1.05;margin-bottom:16px;}
@@ -98,7 +99,7 @@ body{font-family:Arial,Helvetica,sans-serif;background:var(--bg-page);color:var(
 .price-email a{color:var(--orange-mid);text-decoration:none;}
 @media(max-width:620px){
   .price-inner{grid-template-columns:1fr;}
-  .price-left{text-align:center;}
+  .price-left{text-align:center;padding:0 4px;}
   .price-cta{align-items:stretch;}
   .btn-green{text-align:center;}
 }
@@ -162,9 +163,9 @@ footer a{color:var(--orange-mid);text-decoration:none;}
 </div>
 
 <section class="hero">
-  <div class="hero-eyebrow">Skräddarsydd kontorsapp</div>
+  <div class="hero-eyebrow">Vem är kontorets JO Waldner?</div>
   <img class="hero-logo" src="logo.png" alt="Office Ping-Pong League">
-  <p class="hero-desc">En fullständig pingisapp för ditt kontor, med riktiga avatarer av era spelare, live-tabeller och matchhistorik. Klart att köra från dag ett.</p>
+  <p class="hero-desc">En charmig pingisapp för ditt kontor, med personliga avatarer av er personal, live-tabeller och matchhistorik. Snabbt, enkelt och roligt!</p>
   <button class="btn-orange" onclick="openModal()">Beställ nu</button>
 </section>
 
@@ -175,7 +176,7 @@ footer a{color:var(--orange-mid);text-decoration:none;}
     </div>
     <div class="phone-wrap">
       <div class="phone-frame">
-        <div class="phone-screen">
+            <div class="phone-screen">
           <div class="phone-placeholder" id="phone-placeholder">
             <div class="phone-placeholder-icon">🏓</div>
             <div class="phone-placeholder-text">Appen i aktion</div>
@@ -192,7 +193,7 @@ footer a{color:var(--orange-mid);text-decoration:none;}
 
 <section class="section">
   <div class="section-label">Vad ingår</div>
-  <h2>Allt klart, ni spelar direkt</h2>
+  <h2>Allt sätts upp och görs spelredo</h2>
   <div class="included-grid">
     <div class="included-card">
       <div class="included-icon"><img src="palette.png" alt=""></div>
@@ -207,7 +208,7 @@ footer a{color:var(--orange-mid);text-decoration:none;}
     <div class="included-card">
       <div class="included-icon"><img src="domain.png" alt=""></div>
       <h3>Valfri .se-domän</h3>
-      <p>Ni väljer er domän, jag registrerar den. Ni tar sedan över den utan inlåsning.</p>
+      <p>Ni väljer er domän, jag registrerar den. Om ni vill tar ni över den utan inlåsning.</p>
     </div>
     <div class="included-card">
       <div class="included-icon"><img src="demo.png" alt=""></div>
@@ -229,8 +230,8 @@ footer a{color:var(--orange-mid);text-decoration:none;}
 
 <section class="how-section">
   <div class="section" style="padding-bottom:0;">
-    <div class="section-label">Så funkar det</div>
-    <h2>Tre steg</h2>
+    <div class="section-label">Så funkar appen</div>
+    <h2>Tre steg. Ett fåtal sekunder.</h2>
   </div>
   <div class="how-screenshots">
     <div class="how-screen-item">
@@ -240,8 +241,8 @@ footer a{color:var(--orange-mid);text-decoration:none;}
     </div>
     <div class="how-screen-item">
       <img src="set-scores.png" alt="Mata in resultat">
-      <h3>Mata in resultat</h3>
-      <p>Klicka in poängen direkt på skärmen. Enkelt och snabbt.</p>
+      <h3>Klicka in resultat</h3>
+      <p>Registrera poängen direkt på skärmen. Enkelt och snabbt.</p>
     </div>
     <div class="how-screen-item">
       <img src="leaderboard.png" alt="Se tabellen">
@@ -254,9 +255,10 @@ footer a{color:var(--orange-mid);text-decoration:none;}
 
 <section class="section">
   <div class="section-label">Tekniken bakom</div>
-  <h2>Byggd att hålla</h2>
-  <p style="color:#666;max-width:480px;">Modern stack med beprövade verktyg. Ni kan ta över koden och bygga vidare med vilken utvecklare som helst.</p>
+  <h2>Modern och pålitlig tech stack</h2>
+  <p style="color:#666;max-width:480px;">Tydlig och lättläst kod gör att ni enkelt kan ta över repository och bygga vidare med vilken utvecklare som helst.</p>
   <div class="tech-pills">
+    <span class="pill green">Java</span>
     <span class="pill green">TypeScript</span>
     <span class="pill green">Spring Boot</span>
     <span class="pill green">PostgreSQL</span>
@@ -273,7 +275,7 @@ footer a{color:var(--orange-mid);text-decoration:none;}
     <div class="price-left">
       <div class="price-label">Fast pris</div>
       <h2>Redo att spela?</h2>
-      <div class="price-amount">15 000</div>
+      <div class="price-amount">15 000 kr</div>
       <div class="price-excl">exkl. moms, allt ingår</div>
     </div>
     <div class="price-right">
@@ -290,12 +292,12 @@ footer a{color:var(--orange-mid);text-decoration:none;}
   <div class="section-label">Vanliga frågor</div>
   <h2>FAQ</h2>
   <div class="faq-list">
-    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Behöver vi ta egna foton? <span class="faq-toggle">+</span></div><div class="faq-a">Nej. Jag kan komma ut och fotografera spelarna i Stockholmsområdet. Har ni redan bra foton fungerar det också, det är upp till er.</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Hur skapas avatarerna? <span class="faq-toggle">+</span></div><div class="faq-a">Ni skickar bilder på era anställda som ska vara valbara i appen. Om ni finns i Stockholmsområdet kan jag också komma ut och fotografera. Bilderna används som underlag när jag genererar avatarerna. Jag använder ofta flera AI-verktyg och gör manuella korrigeringar i Photoshop eller Photopea.</div></div>
     <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Vad händer om vi vill lägga till fler spelare? <span class="faq-toggle">+</span></div><div class="faq-a">Ni kan lägga till fler i efterhand. Antingen gör jag det mot en liten avgift, eller gör ni det själva via källkoden.</div></div>
     <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Fungerar appen på mobil? <span class="faq-toggle">+</span></div><div class="faq-a">Ja. Appen är byggd som en PWA och är optimerad för mobil. Ni kan lägga till den på hemskärmen precis som en native app.</div></div>
     <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Vad krävs för att ta över koden? <span class="faq-toggle">+</span></div><div class="faq-a">En grundläggande förståelse för TypeScript och Java räcker. Eller anlita vilken webbutvecklare som helst, stacken är välkänd.</div></div>
     <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Hur lång tid tar leveransen? <span class="faq-toggle">+</span></div><div class="faq-a">Normalt 5 till 10 arbetsdagar från beställning till driftsatt app med era avatarer på plats.</div></div>
-    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Kan vi anpassa färger eller logga? <span class="faq-toggle">+</span></div><div class="faq-a">Grundpaketet levereras i appens standarddesign. Anpassningar som varumärgesfärger eller logga kan läggas till, kontakta mig för offert.</div></div>
+    <div class="faq-item" onclick="this.classList.toggle('open')"><div class="faq-q">Kan vi anpassa färger eller logga? <span class="faq-toggle">+</span></div><div class="faq-a">Ja, det går bra! Skicka gärna er grafiska profil om ni vill att appen ska följa den. Ett första förslag och en omgång ändringar ingår. Ytterligare ändringar sker enligt överenskommen timdebitering.</div></div>
   </div>
 </section>
 
@@ -334,7 +336,7 @@ async function submitForm(){
 
 document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
 var vid=document.getElementById('app-video');
-vid.src='https://pub-727799f31ba14b49bdda677fcfc7b316.r2.dev/app2.mp4';
+vid.src='app.mp4';
 vid.style.display='block';
 document.getElementById('phone-placeholder').style.display='none';
 </script>
